@@ -1,0 +1,9 @@
+mafredri/zsh-async
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+
+# Prompt / Theme
+romkatv/powerlevel10k
