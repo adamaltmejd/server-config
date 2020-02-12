@@ -1,2 +1,6 @@
+# Local byobu files
+.byobu/.ssh-agent
+.byobu/.metadata_available
+
 # Local files (with possibly sensitive info)
 *.local
