@@ -4,6 +4,9 @@
 # Don't load TK
 options(menu.graphics = FALSE)
 
+# Set width on resize
+options(setWidthOnResize = TRUE)
+
 # Wider continuation prompt
 options(prompt = "> ")
 options(continue = "... ")
