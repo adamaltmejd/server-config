@@ -16,7 +16,7 @@ source $HOME/.zsh_plugins.sh
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
-  touch .zcompdump
+  touch $HOME/.zcompdump
 else
   compinit -C
 fi
