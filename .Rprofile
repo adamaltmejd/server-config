@@ -39,6 +39,15 @@ print.data.frame <- function(df) {
 # or "require()" calls. Credit for this one goes to @mikelove.
 utils::rc.settings(ipck = TRUE)
 
+# Automatically saves Rhistory even on --no-save.
+if (interactive()) {
+  invisible(
+    reg.finalizer(
+      .GlobalEnv,
+      eval(bquote(function(e) try(savehistory(file.path(.(getwd()), ".Rhistory"))))),
+      onexit = TRUE))
+}
+
 # Radian options
 # see https://help.farbox.com/pygments.html
 # for a list of supported color schemes, default scheme is "native"
