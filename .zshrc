@@ -5,6 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Paths and exports
+source $SERVERCONFIG/exports
+source $SERVERCONFIG/exports.local
+typeset -U path PATH cdpath CDPATH fpath FPATH manpath MANPATH
+
+# Settings
 source $SERVERCONFIG/term-config
 
 # Antibody static loading
@@ -14,7 +20,7 @@ source $HOME/.zsh_plugins.sh
 
 # Load completions
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
   compinit
   touch $HOME/.zcompdump
 else
