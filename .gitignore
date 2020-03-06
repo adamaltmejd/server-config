@@ -4,3 +4,8 @@
 
 # Local files (with possibly sensitive info)
 *.local
+
+# Other stuff
+.Rhistory
+.DS_Store
+~$*.*

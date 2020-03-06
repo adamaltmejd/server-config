@@ -14,6 +14,9 @@ options(menu.graphics = FALSE)
 options(prompt = "> ")
 options(continue = "... ")
 
+# Datatable with truncated columns
+options(datatable.print.trunc.cols = TRUE)
+
 # "q()": quit immediately and not save workspace.
 q <- function(save = "no", ...) { quit(save = save, ...) }
 
