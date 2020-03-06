@@ -24,8 +24,8 @@ q <- function(save = "no", ...) { quit(save = save, ...) }
 # on appropriate consoles.
 # Needs to be downloaded manually from here:
 # https://github.com/jalvesaq/colorout
-if (Sys.getenv("TERM") %in% c("xterm-256color", "screen")) {
-    suppressMessages(require("colorout"))
+if (Sys.getenv("TERM") %in% c("xterm-256color", "screen", "screen-256color")) {
+    suppressMessages(library("colorout"))
 }
 
 # Automatically saves Rhistory even on --no-save.
