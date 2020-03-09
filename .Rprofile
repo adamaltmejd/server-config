@@ -17,6 +17,12 @@ options(continue = "... ")
 # Datatable with truncated columns
 options(datatable.print.trunc.cols = TRUE)
 
+# Renv
+options(renv.settings.snapshot.type = "implicit")
+options(renv.settings.ignored.packages = c("devtools", "remotes"))
+options(renv.settings.vcs.ignore.library = TRUE)
+options(renv.settings.use.cache = TRUE)
+
 # "q()": quit immediately and not save workspace.
 q <- function(save = "no", ...) { quit(save = save, ...) }
 
