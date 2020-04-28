@@ -1,11 +1,15 @@
-# Install packages in user library
-.libPaths("~/.R/packages")
+# See help(startup) for documentation
 
-# Set width on resize
-options(setWidthOnResize = TRUE)
+# Dont ask for mirror
+local({r <- getOption("repos")
+       r["CRAN"] <- "https://cloud.r-project.org"
+       options(repos=r)
+})
 
 options(stringsAsFactors = FALSE)
-options(max.print = 100)
+options(max.print = 200)
+options(width = 200)
+options(setWidthOnResize = TRUE)
 
 # Don't load TK
 options(menu.graphics = FALSE)
@@ -19,9 +23,10 @@ options(datatable.print.trunc.cols = TRUE)
 
 # Renv
 options(renv.settings.snapshot.type = "implicit")
-options(renv.settings.ignored.packages = c("devtools", "remotes"))
+options(renv.settings.ignored.packages = c("devtools", "remotes", "colorout", "languageserver"))
 options(renv.settings.vcs.ignore.library = TRUE)
 options(renv.settings.use.cache = TRUE)
+options(renv.settings.updates.check = FALSE)
 
 # "q()": quit immediately and not save workspace.
 q <- function(save = "no", ...) { quit(save = save, ...) }
@@ -31,7 +36,7 @@ q <- function(save = "no", ...) { quit(save = save, ...) }
 # Needs to be downloaded manually from here:
 # https://github.com/jalvesaq/colorout
 if (Sys.getenv("TERM") %in% c("xterm-256color", "screen", "screen-256color")) {
-    suppressMessages(library("colorout"))
+    suppressMessages(require("colorout", lib.loc = "~/.R/packages"))
 }
 
 # Automatically saves Rhistory even on --no-save.
