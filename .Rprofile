@@ -25,8 +25,23 @@ options(datatable.print.trunc.cols = TRUE)
 options(renv.settings.snapshot.type = "implicit")
 options(renv.settings.ignored.packages = c("devtools", "remotes", "colorout", "languageserver"))
 options(renv.settings.vcs.ignore.library = TRUE)
+options(renv.config.cache.enabled = TRUE)
+options(renv.config.cache.symlinks = TRUE)
 options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
+
+# Update external packages
+pkg_update <- function() {
+    if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
+        install.packages("remotes", lib = "~/.R/packages")
+    }
+    require("remotes", lib.loc = "~/.R/packages")
+    install.packages("renv", lib = "~/.R/packages")
+    install_github(c("jalvesaq/colorout",
+                     "REditorSupport/languageserver"),
+                   upgrade = "always",
+                   lib = "~/.R/packages")
+}
 
 # "q()": quit immediately and not save workspace.
 q <- function(save = "no", ...) { quit(save = save, ...) }
