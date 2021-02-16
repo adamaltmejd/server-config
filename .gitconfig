@@ -3,3 +3,5 @@
 	email = adam@altmejd.se
 [push]
 	default = simple
+[credential]
+	helper = cache
