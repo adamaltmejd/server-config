@@ -28,19 +28,18 @@ options(renv.settings.vcs.ignore.library = TRUE)
 options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
 
-# "q()": quit immediately and not save workspace.
-q <- function(save = "no", ...) { quit(save = save, ...) }
+if (interactive() & !nzchar(Sys.getenv("RADIAN_VERSION"))) {
+    # "q()": quit immediately and not save workspace.
+    q <- function(save = "no", ...) { quit(save = save, ...) }
 
-# Enables the colorized output from R (provided by the colorout package)
-# on appropriate consoles.
-# Needs to be downloaded manually from here:
-# https://github.com/jalvesaq/colorout
-if (Sys.getenv("TERM") %in% c("xterm-256color", "screen", "screen-256color")) {
-    suppressMessages(require("colorout", lib.loc = "~/.R/packages"))
-}
+    # Enables the colorized output from R (provided by the colorout package) on appropriate consoles.
+    # Needs to be downloaded manually from here:
+    # https://github.com/jalvesaq/colorout
+    if (Sys.getenv("TERM") %in% c("xterm-256color", "screen", "screen-256color")) {
+        suppressMessages(require("colorout", lib.loc = "~/.R/packages"))
+    }
 
-# Automatically saves Rhistory even on --no-save.
-if (interactive()) {
+    # Automatically saves Rhistory even on --no-save.
     invisible(reg.finalizer(
         .GlobalEnv,
         eval(bquote(function(e) try(savehistory(file.path(.(getwd()), ".Rhistory"))))),

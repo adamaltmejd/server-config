@@ -29,3 +29,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi
     if [ ! -d ~/.R/packages ]; then; mkdir ~/.R/packages; fi
 fi
+echo "Done! Now run (in order):"
+echo "antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh"
+echo "chsh -s $(which zsh)"
