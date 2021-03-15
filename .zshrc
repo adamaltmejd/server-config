@@ -27,6 +27,7 @@ else
   compinit -C
 fi
 
+
 source $SERVERCONFIG/key_bindings
 source $SERVERCONFIG/aliases
 source $SERVERCONFIG/functions

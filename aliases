@@ -2,7 +2,7 @@
 # ALIASES
 
 # R startup
-alias R="R --silent --no-restore-data --no-save"
+alias R="/usr/bin/R --silent --no-restore-data --no-save"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"

@@ -30,6 +30,11 @@ options(renv.config.cache.symlinks = TRUE)
 options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
 
+# VSCode attach
+if (file.exists(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))) {
+    source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
+}
+
 # Update external packages
 pkg_update <- function() {
     if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
