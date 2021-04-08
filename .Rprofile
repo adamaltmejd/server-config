@@ -9,7 +9,8 @@ local({r <- getOption("repos")
 options(stringsAsFactors = FALSE)
 options(max.print = 200)
 options(width = 200)
-options(setWidthOnResize = TRUE)
+options(setWidthOnResize =
+TRUE)
 
 # Don't load TK
 options(menu.graphics = FALSE)
@@ -35,17 +36,23 @@ if (file.exists(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPR
     source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
 }
 
-# Update external packages
+# Update external packages (should work from inside Renv project)
 pkg_update <- function() {
+    update.packages(oldPkgs = c("remotes", "devtools", "renv", "jsonlite",
+                                "rlang", "lintr", "styler", "R.cache"),
+                    lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
     if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
         install.packages("remotes", lib = "~/.R/packages")
     }
     require("remotes", lib.loc = "~/.R/packages")
-    install.packages("renv", lib = "~/.R/packages")
-    install_github(c("jalvesaq/colorout",
-                     "REditorSupport/languageserver"),
-                   upgrade = "always",
-                   lib = "~/.R/packages")
+    remotes::install_github(c("jalvesaq/colorout",
+                              "REditorSupport/languageserver"),
+                            upgrade = "always",
+                            lib = "~/.R/packages")
+
+    # Make sure styler has a permanent R.cache path
+    require(R.cache, lib.loc = "~/.R/packages")
+    R.cache::getCachePath()
 }
 
 if (interactive() & !nzchar(Sys.getenv("RADIAN_VERSION"))) {
