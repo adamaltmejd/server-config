@@ -5,3 +5,5 @@
 	default = simple
 [credential]
 	helper = cache
+[commit]
+	gpgsign = true
