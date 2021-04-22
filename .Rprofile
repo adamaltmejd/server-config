@@ -1,16 +1,13 @@
 # See help(startup) for documentation
 
-# Dont ask for mirror
-local({r <- getOption("repos")
-       r["CRAN"] <- "https://cloud.r-project.org"
-       options(repos=r)
-})
+# Include data.table repo
+options(repos = c(CRAN = "https://cloud.r-project.org",
+                  DT = "https://Rdatatable.gitlab.io/data.table"))
 
 options(stringsAsFactors = FALSE)
 options(max.print = 200)
 options(width = 200)
-options(setWidthOnResize =
-TRUE)
+options(setWidthOnResize = TRUE)
 
 # Don't load TK
 options(menu.graphics = FALSE)
@@ -24,7 +21,7 @@ options(datatable.print.trunc.cols = TRUE)
 
 # Renv
 options(renv.settings.snapshot.type = "implicit")
-options(renv.settings.ignored.packages = c("devtools", "remotes", "colorout", "languageserver"))
+options(renv.settings.ignored.packages = c("devtools", "roxygen2", "remotes", "colorout", "languageserver"))
 options(renv.settings.vcs.ignore.library = TRUE)
 options(renv.config.cache.enabled = TRUE)
 options(renv.config.cache.symlinks = TRUE)
@@ -38,7 +35,8 @@ if (file.exists(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPR
 
 # Update external packages (should work from inside Renv project)
 pkg_update <- function() {
-    update.packages(oldPkgs = c("remotes", "devtools", "renv", "jsonlite",
+    update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
+                                "renv", "jsonlite", "knitr", "rmarkdown",
                                 "rlang", "lintr", "styler", "R.cache"),
                     lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
     if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
