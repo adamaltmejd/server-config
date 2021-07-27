@@ -7,6 +7,18 @@ then
     exit
 fi
 
+if [ "$(basename $SHELL)" != "zsh" ]; then
+    echo "ZSH needs to be the default shell, please run:"
+    echo "chsh -s $(which zsh)"
+    echo "Then log out and in."
+    exit
+fi
+
+if [ -z $ZSH_VERSION ]; then
+    echo "This script needs to be run from zsh."
+    exit
+fi
+
 # Ensure important directories exist
 if [ ! -d $HOME/.local/ ]; then; mkdir $HOME/.local; fi
 if [ ! -d $HOME/.local/bin ]; then; mkdir $HOME/.local/bin; fi
@@ -21,6 +33,7 @@ then
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         curl -sfL git.io/antibody | sh -s - -b ~/.local/bin
     fi
+    echo "Please rerun the installer."
     exit
 fi
 
@@ -51,15 +64,16 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         ln -s "$src" "$dst"
     done
     unset src dst
-
-    echo "Done! Now run (in order):"
-    echo "chsh -s $(which zsh)"
-    echo "exec zsh -l"
-    echo "antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh"
 fi
 
 echo ""
+echo "Install antibody zsh plugins? (Y/N)"
+read -k 1 REPLY; echo ''
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh
+fi
 
+echo ""
 echo "Link executables to ~/.local/bin (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
