@@ -2,10 +2,10 @@
 # Prepares server for use
 
 # Ensure important directories exist
-if [ ! -d ~/.local/ ]; then; mkdir ~/.local; fi
-if [ ! -d ~/.local/bin ]; then; mkdir ~/.local/bin; fi
-if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi
-if [ ! -d ~/.R/packages ]; then; mkdir ~/.R/packages; fi
+if [ ! -d $HOME/.local/ ]; then; mkdir $HOME/.local; fi
+if [ ! -d $HOME/.local/bin ]; then; mkdir $HOME/.local/bin; fi
+if [ ! -d $HOME/.R/ ]; then; mkdir $HOME/.R; fi
+if [ ! -d $HOME/.R/packages ]; then; mkdir $HOME/.R/packages; fi
 
 echo "Before running this, make sure ZSH and antibody is installed."
 echo "Create symlinks in home folder (Y/N)"
@@ -35,12 +35,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     done
     unset src dst
 
-    # Reload (exec as login)
-    reload
-
     echo "Done! Now run (in order):"
-    echo "antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh"
     echo "chsh -s $(which zsh)"
+    echo "exec zsh -l"
+    echo "antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh"
 fi
 
 echo ""
