@@ -37,7 +37,6 @@ then
     exit
 fi
 
-echo "Before running this, make sure ZSH and antibody is installed."
 echo "Create symlinks in home folder (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
