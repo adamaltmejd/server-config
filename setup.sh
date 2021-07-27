@@ -1,11 +1,28 @@
 #!/usr/bin/env zsh
 # Prepares server for use
 
+if ! command -v zsh &> /dev/null
+then
+    echo "ZSH could not be found, please install."
+    exit
+fi
+
 # Ensure important directories exist
 if [ ! -d $HOME/.local/ ]; then; mkdir $HOME/.local; fi
 if [ ! -d $HOME/.local/bin ]; then; mkdir $HOME/.local/bin; fi
 if [ ! -d $HOME/.R/ ]; then; mkdir $HOME/.R; fi
 if [ ! -d $HOME/.R/packages ]; then; mkdir $HOME/.R/packages; fi
+
+if ! command -v antibody &> /dev/null
+then
+    echo "Antibody could not be found, do you want me to install it? (Y/N)"
+    echo "Installing will run: curl -sfL git.io/antibody | sh -s - -b ~/.local/bin"
+    read -k 1 REPLY; echo ''
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        curl -sfL git.io/antibody | sh -s - -b ~/.local/bin
+    fi
+    exit
+fi
 
 echo "Before running this, make sure ZSH and antibody is installed."
 echo "Create symlinks in home folder (Y/N)"
