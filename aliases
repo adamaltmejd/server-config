@@ -2,13 +2,11 @@
 # ALIASES
 
 # R startup
+alias r="radian"
 alias R="/usr/bin/R --silent --no-restore-data --no-save"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
-
-# List all files colorized in long format
-alias l="ls -lF --color=auto"
 
 # List all files colorized in long format, including dot files
 alias la="ls -lahSF --color=auto"

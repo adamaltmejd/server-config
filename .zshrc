@@ -18,6 +18,21 @@ source $HOME/.zsh_plugins.sh
 # To load (after including more plugins), run:
 # antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh
 
+# Renew environment variables continuously in tmux
+if [ -n "$TMUX" ]; then
+    function _renew_tmux_env_one {
+        oneenv=$(tmux show-environment | grep "^$1")
+        [[ ! -z $oneenv ]] && export $oneenv
+    }
+    function _renew_tmux_env {
+        _renew_tmux_env_one SSH_AUTH_SOCK
+        _renew_tmux_env_one SSH_CONNECTION
+        _renew_tmux_env_one DISPLAY
+        _renew_tmux_env_one TERM_PROGRAM
+    }
+    add-zsh-hook preexec _renew_tmux_env
+fi
+
 # Load completions
 autoload -Uz compinit
 if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# TMUX VSCODE STARTUP SCRIPT
+# Starts or attaches to a tmux session named after the workspace folder
+tmux new-session -A -s$(basename $(pwd) | tr " " "-")
