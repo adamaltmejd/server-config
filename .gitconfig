@@ -3,6 +3,8 @@
 	email = adam@altmejd.se
 [push]
 	default = simple
+[pull]
+	ff = true
 [credential]
 	helper = cache
 [commit]
