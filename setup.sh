@@ -25,6 +25,8 @@ if [ ! -d $HOME/.local/bin ]; then; mkdir $HOME/.local/bin; fi
 if [ ! -d $HOME/.R/ ]; then; mkdir $HOME/.R; fi
 if [ ! -d $HOME/.R/packages ]; then; mkdir $HOME/.R/packages; fi
 
+# Make sure antibody is in PATH if available
+export PATH="$HOME/.local/bin:$PATH"
 if ! command -v antibody &> /dev/null
 then
     echo "Antibody could not be found, do you want me to install it? (Y/N)"
