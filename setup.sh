@@ -67,6 +67,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     unset src dst
 fi
 
+source ~/.zshenv
+
 echo ""
 echo "Install antibody zsh plugins? (Y/N)"
 read -k 1 REPLY; echo ''
