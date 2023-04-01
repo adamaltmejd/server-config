@@ -4,6 +4,7 @@
 [push]
 	default = simple
 [pull]
+	rebase = true
 	ff = true
 [credential]
 	helper = cache

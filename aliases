@@ -5,6 +5,9 @@
 alias r="radian"
 alias R="/usr/bin/R --silent --no-restore-data --no-save"
 
+# Tmux
+alias tm="$SERVERCONFIG/tmux_startup"
+
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
