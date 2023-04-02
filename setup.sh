@@ -26,14 +26,14 @@ if [ ! -d $HOME/.R/ ]; then; mkdir $HOME/.R; fi
 if [ ! -d $HOME/.R/packages ]; then; mkdir $HOME/.R/packages; fi
 
 # Make sure antibody is in PATH if available
-export PATH="$HOME/.local/bin:$PATH"
-if ! command -v antibody &> /dev/null
+if [ ! -d ${ZDOTDIR:-~}/.antidote ]
 then
-    echo "Antibody could not be found, do you want me to install it? (Y/N)"
-    echo "Installing will run: curl -sfL git.io/antibody | sh -s - -b ~/.local/bin"
+    echo "Antidote could not be found, do you want me to install it? (Y/N)"
+    echo "Installing will run: git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote"
+
     read -k 1 REPLY; echo ''
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        curl -sfL git.io/antibody | sh -s - -b ~/.local/bin
+	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
     fi
     echo "Please rerun the installer."
     exit
@@ -68,13 +68,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         ln -s "$src" "$dst"
     done
     unset src dst
-fi
-
-echo ""
-echo "Install antibody zsh plugins? (Y/N)"
-read -k 1 REPLY; echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh
 fi
 
 echo ""

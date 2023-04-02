@@ -13,10 +13,9 @@ typeset -U path PATH cdpath CDPATH fpath FPATH manpath MANPATH
 # Settings
 source $SERVERCONFIG/term-config
 
-# Antibody static loading
-source $HOME/.zsh_plugins.sh
-# To load (after including more plugins), run:
-# antibody bundle < $SERVERCONFIG/zsh-plugins > $HOME/.zsh_plugins.sh
+# Initialize Antidote and zsh plugins
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
 # Renew environment variables continuously in tmux
 if [ -n "$TMUX" ]; then

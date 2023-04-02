@@ -1,6 +1,8 @@
 [user]
 	name = Adam Altmejd
 	email = adam@altmejd.se
+[include]
+    path = ~/.gitconfig.local
 [push]
 	default = simple
 [pull]
