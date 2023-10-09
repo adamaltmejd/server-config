@@ -19,6 +19,9 @@ options(continue = "... ")
 # Datatable with truncated columns
 options(datatable.print.trunc.cols = TRUE)
 
+# Load additional packages at startup
+options(defaultPackages = c(getOption("defaultPackages"), "data.table", "targets", "fst"))
+
 # Renv
 options(renv.settings.snapshot.type = "implicit")
 options(renv.settings.ignored.packages = c("devtools", "roxygen2", "remotes", "colorout", "languageserver"))
@@ -29,23 +32,23 @@ options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
 
 if (interactive()) {
-    # VSCode attach
+    # # VSCode attach
     if (file.exists(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))) {
         source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
 
         # VSCode session watcher settings
         # Watch global environemnt symbols to provide hover on and completion after session symbol.
         # Only specify in .Rprofile since it only takes effect on session startup.
-        options(vsc.globalenv = TRUE)
+        #options(vsc.globalenv = TRUE)
 
         # Which view column to show the plot file on graphics update
         # Use FALSE to diable plot watcher so that the default R plot device is used.
         # Only specify in .Rprofile since it only takes effect on session startup.
-        options(vsc.plot = "Beside")
+        #options(vsc.plot = "Beside")
 
         # The arguments for the png device to replay user graphics to show in VSCode.
         # Ignored if options(vsc.plot = FALSE).
-        options(vsc.dev.args = list(width = 800, height = 600, type = "cairo-png"))
+        #options(vsc.dev.args = list(width = 800, height = 600, type = "cairo-png"))
 
         # Which view column to show the WebView triggered by browser (e.g. shiny apps)?
         # Use FALSE to open in external web browser.
