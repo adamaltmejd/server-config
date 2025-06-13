@@ -6,7 +6,7 @@
 [push]
 	default = simple
 [pull]
-	rebase = true
+	rebase = false
 	ff = true
 [credential]
 	helper = cache
