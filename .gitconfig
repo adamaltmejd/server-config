@@ -1,8 +1,7 @@
 [user]
 	name = Adam Altmejd
 	email = adam@altmejd.se
-[include]
-    path = ~/.gitconfig.local
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2zXecE6BdEOZ3Pt5CGLhLY5fAdu0XIgRe0BkSwNBi3 adam@altmejd.se
 [push]
 	default = simple
 [pull]
@@ -12,3 +11,5 @@
 	helper = cache
 [commit]
 	gpgsign = true
+[gpg]
+	format = ssh
